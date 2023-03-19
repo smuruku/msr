@@ -36,6 +36,21 @@
 		</dependency>
 
 	</dependencies>
+	<distributionManagement>
+	
+	    <repository>
+	      <id>nexus</id>
+	      <name>satish Releases Nexus Repository</name>
+	      <url>http://204.236.170.152:8081/repository/test-release/</url>
+	    </repository>
+	    
+	    <snapshotRepository>
+	      <id>nexus</id>
+	      <name>satish Snapshot Nexus Repository </name>
+	      <url>http://204.236.170.152:8081/repository/test-snapshot/</url>
+	    </snapshotRepository>
+	    
+	</distributionManagement>
 
 	<!-- Committing and updating changes through Maven, by using below mvn command. 
 		For Commiting mvn -Dmessage="Updated using maven" scm:checkin For updating 
