@@ -1,0 +1,22 @@
+node{
+    stage("git clone"){
+       git credentialsId: '2aaaa26d-ec44-4971-a495-66acf84e292b', url: 'https://github.com/smuruku/spring-boot-mongo-docker.git' 
+    }
+    stage("Maven Clean Build"){
+       def mavenHome = tool name : "maven-3.9.2",type :"maven"
+       def mavenCMD = "${mavenHome}/bin/mvn "
+       sh "$mavenCMD clean package"
+       
+    }
+    stage ("Build Docker Image"){
+       sh "docker build -t smuruku/spring-mongo-boot ."    
+    }
+    stage ("Docker Push"){
+     sh "docker login -u smuruku -p satishchow9. "
+     sh "docker push smuruku/spring-mongo-boot "
+    }
+    stage ("Deploy k8s cluster"){
+     sh "kubectl apply -f springBootMongo.yml"
+    }
+    
+}
